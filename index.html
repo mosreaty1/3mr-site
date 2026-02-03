@@ -23,12 +23,6 @@
 </head>
 <body>
 
-  <!-- Preloader -->
-  <div class="preloader" id="preloader">
-    <div class="preloader-ring"></div>
-    <span class="preloader-name">GhNewa</span>
-  </div>
-
   <input type="checkbox" id="toggle-theme" />
   <label for="toggle-theme" class="toggle-label" aria-label="Theme">
     <i class="fas fa-sun"></i>
@@ -40,23 +34,13 @@
   </button>
 
   <div class="wrapper">
-    <!-- Ambient Background Glows -->
-    <div class="ambient-glow ambient-glow--warm"></div>
-    <div class="ambient-glow ambient-glow--cool"></div>
-    <div class="ambient-glow ambient-glow--accent"></div>
-
-    <!-- Floating Particles -->
-    <div class="particles" id="particles"></div>
-
     <div class="container">
       <div class="avatar-border">
         <img src="src/profile.png" alt="Profile" class="avatar" />
       </div>
 
       <h1 class="nome" data-lang="name">GhNewa</h1>
-      <p class="bio">
-        <span id="typewriter-text"></span><span class="cursor">|</span>
-      </p>
+      <p class="bio" data-lang="bio">Content Creator - Streamer</p>
 
       <div class="social-icons">
         <a href="https://kick.com/ghnewa" target="_blank" class="kick-icon" data-lang-title="kick-tooltip"><i class="fab fa-kickstarter-k"></i></a>
@@ -87,248 +71,180 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tooltipster/4.2.8/js/tooltipster.bundle.min.js"></script>
 
   <script>
-    /* ---- Translations ---- */
-    const translations = {
-      en: {
-        name: 'GhNewa',
-        'kick-tooltip': 'Watch my live streams on Kick',
-        'facebook-tooltip': 'View my Facebook links',
-        'instagram-tooltip': 'View my Instagram links',
-        'tiktok-tooltip': 'View my TikTok links',
-        'whatsapp-tooltip': 'Join my WhatsApp community',
-        'youtube-tooltip': 'Subscribe to my YouTube channel',
-        'discord-tooltip': 'Join my Discord server',
-        rights: 'All rights reserved',
-        developed: 'Developed by',
-        'facebook-title': 'Facebook Links',
-        'instagram-title': 'Instagram Links',
-        'tiktok-title': 'TikTok Links',
-        'facebook-account': 'Facebook Account',
-        'facebook-channel': 'Facebook Channel',
-        'facebook-group': 'Facebook Group',
-        'facebook-page': 'Facebook Page',
-        'instagram-account': 'Instagram Account',
-        'instagram-channel': 'Instagram Channel',
-        'tiktok-account': 'TikTok Account',
-        'tiktok-channel': 'TikTok Channel'
-      },
-      ar: {
-        name: '\u063A\u0646\u064A\u0648\u0629',
-        'kick-tooltip': '\u0634\u0627\u0647\u062F \u0628\u062B\u0648\u062B\u064A \u0627\u0644\u0645\u0628\u0627\u0634\u0631\u0629 \u0639\u0644\u0649 \u0643\u064A\u0643',
-        'facebook-tooltip': '\u0639\u0631\u0636 \u0631\u0648\u0627\u0628\u0637 \u0627\u0644\u0641\u064A\u0633\u0628\u0648\u0643',
-        'instagram-tooltip': '\u0639\u0631\u0636 \u0631\u0648\u0627\u0628\u0637 \u0627\u0644\u0625\u0646\u0633\u062A\u062C\u0631\u0627\u0645',
-        'tiktok-tooltip': '\u0639\u0631\u0636 \u0631\u0648\u0627\u0628\u0637 \u0627\u0644\u062A\u064A\u0643 \u062A\u0648\u0643',
-        'whatsapp-tooltip': '\u0627\u0646\u0636\u0645 \u0625\u0644\u0649 \u0645\u062C\u062A\u0645\u0639 \u0627\u0644\u0648\u0627\u062A\u0633\u0627\u0628',
-        'youtube-tooltip': '\u0627\u0634\u062A\u0631\u0643 \u0641\u064A \u0642\u0646\u0627\u0629 \u0627\u0644\u064A\u0648\u062A\u064A\u0648\u0628',
-        'discord-tooltip': '\u0627\u0646\u0636\u0645 \u0625\u0644\u0649 \u0633\u064A\u0631\u0641\u0631 \u0627\u0644\u062F\u064A\u0633\u0643\u0648\u0631\u062F',
-        rights: '\u062C\u0645\u064A\u0639 \u0627\u0644\u062D\u0642\u0648\u0642 \u0645\u062D\u0641\u0648\u0638\u0629',
-        developed: '\u062A\u0645 \u0627\u0644\u062A\u0637\u0648\u064A\u0631 \u0628\u0648\u0627\u0633\u0637\u0629',
-        'facebook-title': '\u0631\u0648\u0627\u0628\u0637 \u0627\u0644\u0641\u064A\u0633\u0628\u0648\u0643',
-        'instagram-title': '\u0631\u0648\u0627\u0628\u0637 \u0627\u0644\u0625\u0646\u0633\u062A\u062C\u0631\u0627\u0645',
-        'tiktok-title': '\u0631\u0648\u0627\u0628\u0637 \u0627\u0644\u062A\u064A\u0643 \u062A\u0648\u0643',
-        'facebook-account': '\u062D\u0633\u0627\u0628 \u0627\u0644\u0641\u064A\u0633\u0628\u0648\u0643',
-        'facebook-channel': '\u0642\u0646\u0627\u0629 \u0627\u0644\u0641\u064A\u0633\u0628\u0648\u0643',
-        'facebook-group': '\u0645\u062C\u0645\u0648\u0639\u0629 \u0627\u0644\u0641\u064A\u0633\u0628\u0648\u0643',
-        'facebook-page': '\u0635\u0641\u062D\u0629 \u0627\u0644\u0641\u064A\u0633\u0628\u0648\u0643',
-        'instagram-account': '\u062D\u0633\u0627\u0628 \u0627\u0644\u0625\u0646\u0633\u062A\u062C\u0631\u0627\u0645',
-        'instagram-channel': '\u0642\u0646\u0627\u0629 \u0627\u0644\u0625\u0646\u0633\u062A\u062C\u0631\u0627\u0645',
-        'tiktok-account': '\u062D\u0633\u0627\u0628 \u0627\u0644\u062A\u064A\u0643 \u062A\u0648\u0643',
-        'tiktok-channel': '\u0642\u0646\u0627\u0629 \u0627\u0644\u062A\u064A\u0643 \u062A\u0648\u0643'
-      }
-    };
-
-    /* ---- Typewriter Config ---- */
-    const typewriterWords = {
-      en: ['Content Creator', 'Streamer', 'Gamer', 'YouTuber'],
-      ar: ['\u0635\u0627\u0646\u0639 \u0645\u062D\u062A\u0648\u0649', '\u0633\u062A\u0631\u064A\u0645\u0631', '\u062C\u064A\u0645\u0631', '\u064A\u0648\u062A\u064A\u0648\u0628\u0631']
-    };
-
-    let currentLang = localStorage.getItem('language') || 'en';
-    let twIndex = 0;
-    let twCharIndex = 0;
-    let twIsDeleting = false;
-    let twTimeout = null;
-
-    /* ---- Language ---- */
-    function setLanguage(lang) {
-      currentLang = lang;
-      localStorage.setItem('language', lang);
-      document.documentElement.lang = lang;
-      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-
-      const langToggle = document.getElementById('toggle-language');
-      if (lang === 'ar') {
-        langToggle.classList.add('active');
-      } else {
-        langToggle.classList.remove('active');
-      }
-
-      document.querySelectorAll('[data-lang]').forEach(elem => {
-        const key = elem.getAttribute('data-lang');
-        if (translations[lang][key]) {
-          elem.textContent = translations[lang][key];
+      const translations = {
+        en: {
+          name: 'GhNewa',
+          bio: 'Content Creator - Streamer',
+          'kick-tooltip': 'Watch my live streams on Kick',
+          'facebook-tooltip': 'View my Facebook links',
+          'instagram-tooltip': 'View my Instagram links',
+          'tiktok-tooltip': 'View my TikTok links',
+          'whatsapp-tooltip': 'Join my WhatsApp community',
+          'youtube-tooltip': 'Subscribe to my YouTube channel',
+          'discord-tooltip': 'Join my Discord server',
+          rights: 'All rights reserved',
+          developed: 'Developed by',
+          'facebook-title': 'Facebook Links',
+          'instagram-title': 'Instagram Links',
+          'tiktok-title': 'TikTok Links',
+          'facebook-account': 'Facebook Account',
+          'facebook-channel': 'Facebook Channel',
+          'facebook-group': 'Facebook Group',
+          'facebook-page': 'Facebook Page',
+          'instagram-account': 'Instagram Account',
+          'instagram-channel': 'Instagram Channel',
+          'tiktok-account': 'TikTok Account',
+          'tiktok-channel': 'TikTok Channel'
+        },
+        ar: {
+          name: '\u063A\u0646\u064A\u0648\u0629',
+          bio: '\u0635\u0627\u0646\u0639 \u0645\u062D\u062A\u0648\u0649 - \u0633\u062A\u0631\u064A\u0645\u0631',
+          'kick-tooltip': '\u0634\u0627\u0647\u062F \u0628\u062B\u0648\u062B\u064A \u0627\u0644\u0645\u0628\u0627\u0634\u0631\u0629 \u0639\u0644\u0649 \u0643\u064A\u0643',
+          'facebook-tooltip': '\u0639\u0631\u0636 \u0631\u0648\u0627\u0628\u0637 \u0627\u0644\u0641\u064A\u0633\u0628\u0648\u0643',
+          'instagram-tooltip': '\u0639\u0631\u0636 \u0631\u0648\u0627\u0628\u0637 \u0627\u0644\u0625\u0646\u0633\u062A\u062C\u0631\u0627\u0645',
+          'tiktok-tooltip': '\u0639\u0631\u0636 \u0631\u0648\u0627\u0628\u0637 \u0627\u0644\u062A\u064A\u0643 \u062A\u0648\u0643',
+          'whatsapp-tooltip': '\u0627\u0646\u0636\u0645 \u0625\u0644\u0649 \u0645\u062C\u062A\u0645\u0639 \u0627\u0644\u0648\u0627\u062A\u0633\u0627\u0628',
+          'youtube-tooltip': '\u0627\u0634\u062A\u0631\u0643 \u0641\u064A \u0642\u0646\u0627\u0629 \u0627\u0644\u064A\u0648\u062A\u064A\u0648\u0628',
+          'discord-tooltip': '\u0627\u0646\u0636\u0645 \u0625\u0644\u0649 \u0633\u064A\u0631\u0641\u0631 \u0627\u0644\u062F\u064A\u0633\u0643\u0648\u0631\u062F',
+          rights: '\u062C\u0645\u064A\u0639 \u0627\u0644\u062D\u0642\u0648\u0642 \u0645\u062D\u0641\u0648\u0638\u0629',
+          developed: '\u062A\u0645 \u0627\u0644\u062A\u0637\u0648\u064A\u0631 \u0628\u0648\u0627\u0633\u0637\u0629',
+          'facebook-title': '\u0631\u0648\u0627\u0628\u0637 \u0627\u0644\u0641\u064A\u0633\u0628\u0648\u0643',
+          'instagram-title': '\u0631\u0648\u0627\u0628\u0637 \u0627\u0644\u0625\u0646\u0633\u062A\u062C\u0631\u0627\u0645',
+          'tiktok-title': '\u0631\u0648\u0627\u0628\u0637 \u0627\u0644\u062A\u064A\u0643 \u062A\u0648\u0643',
+          'facebook-account': '\u062D\u0633\u0627\u0628 \u0627\u0644\u0641\u064A\u0633\u0628\u0648\u0643',
+          'facebook-channel': '\u0642\u0646\u0627\u0629 \u0627\u0644\u0641\u064A\u0633\u0628\u0648\u0643',
+          'facebook-group': '\u0645\u062C\u0645\u0648\u0639\u0629 \u0627\u0644\u0641\u064A\u0633\u0628\u0648\u0643',
+          'facebook-page': '\u0635\u0641\u062D\u0629 \u0627\u0644\u0641\u064A\u0633\u0628\u0648\u0643',
+          'instagram-account': '\u062D\u0633\u0627\u0628 \u0627\u0644\u0625\u0646\u0633\u062A\u062C\u0631\u0627\u0645',
+          'instagram-channel': '\u0642\u0646\u0627\u0629 \u0627\u0644\u0625\u0646\u0633\u062A\u062C\u0631\u0627\u0645',
+          'tiktok-account': '\u062D\u0633\u0627\u0628 \u0627\u0644\u062A\u064A\u0643 \u062A\u0648\u0643',
+          'tiktok-channel': '\u0642\u0646\u0627\u0629 \u0627\u0644\u062A\u064A\u0643 \u062A\u0648\u0643'
         }
-      });
+      };
 
-      document.querySelectorAll('[data-lang-title]').forEach(elem => {
-        const key = elem.getAttribute('data-lang-title');
-        if (translations[lang][key]) {
-          if ($(elem).hasClass('tooltipstered')) {
-            $(elem).tooltipster('destroy');
+      let currentLang = localStorage.getItem('language') || 'en';
+
+      function setLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('language', lang);
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+        const langToggle = document.getElementById('toggle-language');
+        if (lang === 'ar') {
+          langToggle.classList.add('active');
+        } else {
+          langToggle.classList.remove('active');
+        }
+
+        document.querySelectorAll('[data-lang]').forEach(elem => {
+          const key = elem.getAttribute('data-lang');
+          if (translations[lang][key]) {
+            elem.textContent = translations[lang][key];
           }
-          elem.setAttribute('title', translations[lang][key]);
-        }
+        });
+
+        document.querySelectorAll('[data-lang-title]').forEach(elem => {
+          const key = elem.getAttribute('data-lang-title');
+          if (translations[lang][key]) {
+            if ($(elem).hasClass('tooltipstered')) {
+              $(elem).tooltipster('destroy');
+            }
+            elem.setAttribute('title', translations[lang][key]);
+          }
+        });
+      }
+
+      document.getElementById('toggle-language').addEventListener('click', () => {
+        const newLang = currentLang === 'en' ? 'ar' : 'en';
+        setLanguage(newLang);
       });
 
-      resetTypewriter();
-    }
+      setLanguage(currentLang);
 
-    document.getElementById('toggle-language').addEventListener('click', () => {
-      const newLang = currentLang === 'en' ? 'ar' : 'en';
-      setLanguage(newLang);
-    });
+      $('body').on('mouseenter', '*[title]', function() {
+        $(this).tooltipster({
+          animation: 'grow',
+          animationDuration: 300,
+          delay: 100,
+          speed: 350,
+          theme: 'tooltipster-punk',
+          contentAsHTML: true,
+          interactive: true,
+          debug: false,
+          maxWidth: 500
+        }).tooltipster('show');
+      });
 
-    /* ---- Typewriter ---- */
-    function typewrite() {
-      const words = typewriterWords[currentLang] || typewriterWords.en;
-      const current = words[twIndex % words.length];
-      const el = document.getElementById('typewriter-text');
-      if (!el) return;
+      document.getElementById('year').textContent = new Date().getFullYear();
 
-      if (twIsDeleting) {
-        twCharIndex--;
-        el.textContent = current.substring(0, twCharIndex);
-        if (twCharIndex === 0) {
-          twIsDeleting = false;
-          twIndex++;
-          twTimeout = setTimeout(typewrite, 380);
-          return;
-        }
-        twTimeout = setTimeout(typewrite, 35);
-      } else {
-        twCharIndex++;
-        el.textContent = current.substring(0, twCharIndex);
-        if (twCharIndex === current.length) {
-          twTimeout = setTimeout(function() {
-            twIsDeleting = true;
-            typewrite();
-          }, 2200);
-          return;
-        }
-        twTimeout = setTimeout(typewrite, 85);
-      }
-    }
-
-    function resetTypewriter() {
-      clearTimeout(twTimeout);
-      twIndex = 0;
-      twCharIndex = 0;
-      twIsDeleting = false;
-      var el = document.getElementById('typewriter-text');
-      if (el) el.textContent = '';
-      typewrite();
-    }
-
-    /* ---- Particles ---- */
-    function createParticles() {
-      var container = document.getElementById('particles');
-      if (!container) return;
-      for (var i = 0; i < 55; i++) {
-        var p = document.createElement('div');
-        p.className = 'particle';
-        var size = 1 + Math.random() * 2.5;
-        var duration = 8 + Math.random() * 16;
-        p.style.cssText =
-          'left:' + (Math.random() * 100) + '%;' +
-          'width:' + size + 'px;' +
-          'height:' + size + 'px;' +
-          'animation-duration:' + duration + 's;' +
-          'animation-delay:-' + (Math.random() * duration) + 's;';
-        container.appendChild(p);
-      }
-    }
-
-    /* ---- Preloader ---- */
-    window.addEventListener('load', function() {
-      var preloader = document.getElementById('preloader');
-      if (preloader) {
-        setTimeout(function() { preloader.classList.add('hidden'); }, 400);
-        setTimeout(function() { preloader.style.display = 'none'; }, 1100);
-      }
-    });
-
-    /* ---- Tooltipster ---- */
-    $('body').on('mouseenter', '*[title]', function() {
-      $(this).tooltipster({
-        animation: 'grow',
-        animationDuration: 300,
-        delay: 100,
-        speed: 350,
-        theme: 'tooltipster-punk',
-        contentAsHTML: true,
-        interactive: true,
-        debug: false,
-        maxWidth: 500
-      }).tooltipster('show');
-    });
-
-    /* ---- Modal ---- */
-    function openModal(platform) {
-      var modal = document.getElementById('socialModal');
-      var modalTitle = document.getElementById('modalTitle');
-      var modalButtons = document.getElementById('modalButtons');
+      function openModal(platform) {
+      const modal = document.getElementById('socialModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalButtons = document.getElementById('modalButtons');
 
       if (platform === 'facebook') {
-        modalTitle.innerHTML = '<i class="fab fa-facebook"></i> ' + translations[currentLang]['facebook-title'];
-        modalButtons.innerHTML =
-          '<a href="https://www.facebook.com/ahmed.abd.elghany.157474/" target="_blank" class="modal-btn facebook-btn">' +
-            '<i class="fas fa-user"></i><span>' + translations[currentLang]['facebook-account'] + '</span></a>' +
-          '<a href="https://www.messenger.com/channel/GhNewa" target="_blank" class="modal-btn facebook-btn">' +
-            '<i class="fas fa-users"></i><span>' + translations[currentLang]['facebook-channel'] + '</span></a>' +
-          '<a href="https://www.facebook.com/groups/2262410660525987" target="_blank" class="modal-btn facebook-btn">' +
-            '<i class="fas fa-user-group"></i><span>' + translations[currentLang]['facebook-group'] + '</span></a>' +
-          '<a href="https://www.facebook.com/GhNewa/" target="_blank" class="modal-btn facebook-btn">' +
-            '<i class="fas fa-pager"></i><span>' + translations[currentLang]['facebook-page'] + '</span></a>';
+        modalTitle.innerHTML = `<i class="fab fa-facebook"></i> ${translations[currentLang]['facebook-title']}`;
+        modalButtons.innerHTML = `
+          <a href="https://www.facebook.com/ahmed.abd.elghany.157474/" target="_blank" class="modal-btn facebook-btn">
+            <i class="fas fa-user"></i>
+            <span>${translations[currentLang]['facebook-account']}</span>
+          </a>
+          <a href="https://www.messenger.com/channel/GhNewa" target="_blank" class="modal-btn facebook-btn">
+            <i class="fas fa-users"></i>
+            <span>${translations[currentLang]['facebook-channel']}</span>
+          </a>
+          <a href="https://www.facebook.com/groups/2262410660525987" target="_blank" class="modal-btn facebook-btn">
+            <i class="fas fa-user-group"></i>
+            <span>${translations[currentLang]['facebook-group']}</span>
+          </a>
+          <a href="https://www.facebook.com/GhNewa/" target="_blank" class="modal-btn facebook-btn">
+            <i class="fas fa-pager"></i>
+            <span>${translations[currentLang]['facebook-page']}</span>
+          </a>
+        `;
       } else if (platform === 'instagram') {
-        modalTitle.innerHTML = '<i class="fab fa-instagram"></i> ' + translations[currentLang]['instagram-title'];
-        modalButtons.innerHTML =
-          '<a href="https://www.instagram.com/ghnewa_/" target="_blank" class="modal-btn instagram-btn">' +
-            '<i class="fas fa-user"></i><span>' + translations[currentLang]['instagram-account'] + '</span></a>' +
-          '<a href="https://www.instagram.com/channel/AbYjN1RWsprTqMNj/?igsh=dWkxOHpqNDE5NHZr" target="_blank" class="modal-btn instagram-btn">' +
-            '<i class="fas fa-users"></i><span>' + translations[currentLang]['instagram-channel'] + '</span></a>';
+        modalTitle.innerHTML = `<i class="fab fa-instagram"></i> ${translations[currentLang]['instagram-title']}`;
+        modalButtons.innerHTML = `
+          <a href="https://www.instagram.com/ghnewa_/" target="_blank" class="modal-btn instagram-btn">
+            <i class="fas fa-user"></i>
+            <span>${translations[currentLang]['instagram-account']}</span>
+          </a>
+          <a href="https://www.instagram.com/channel/AbYjN1RWsprTqMNj/?igsh=dWkxOHpqNDE5NHZr" target="_blank" class="modal-btn instagram-btn">
+            <i class="fas fa-users"></i>
+            <span>${translations[currentLang]['instagram-channel']}</span>
+          </a>
+        `;
       } else if (platform === 'tiktok') {
-        modalTitle.innerHTML = '<i class="fab fa-tiktok"></i> ' + translations[currentLang]['tiktok-title'];
-        modalButtons.innerHTML =
-          '<a href="https://www.tiktok.com/@ghnewa" target="_blank" class="modal-btn tiktok-btn">' +
-            '<i class="fas fa-user"></i><span>' + translations[currentLang]['tiktok-account'] + '</span></a>' +
-          '<a href="https://vt.tiktok.com/ZSHcf5pWPYbaN-0bGos/" target="_blank" class="modal-btn tiktok-btn">' +
-            '<i class="fas fa-users"></i><span>' + translations[currentLang]['tiktok-channel'] + '</span></a>';
+        modalTitle.innerHTML = `<i class="fab fa-tiktok"></i> ${translations[currentLang]['tiktok-title']}`;
+        modalButtons.innerHTML = `
+          <a href="https://www.tiktok.com/@ghnewa" target="_blank" class="modal-btn tiktok-btn">
+            <i class="fas fa-user"></i>
+            <span>${translations[currentLang]['tiktok-account']}</span>
+          </a>
+          <a href="https://vt.tiktok.com/ZSHcf5pWPYbaN-0bGos/" target="_blank" class="modal-btn tiktok-btn">
+            <i class="fas fa-users"></i>
+            <span>${translations[currentLang]['tiktok-channel']}</span>
+          </a>
+        `;
       }
 
       modal.style.display = 'flex';
-      setTimeout(function() { modal.classList.add('show'); }, 10);
+      setTimeout(() => modal.classList.add('show'), 10);
     }
 
     function closeModal() {
-      var modal = document.getElementById('socialModal');
+      const modal = document.getElementById('socialModal');
       modal.classList.remove('show');
-      setTimeout(function() { modal.style.display = 'none'; }, 300);
+      setTimeout(() => modal.style.display = 'none', 300);
     }
 
     window.onclick = function(event) {
-      if (event.target === document.getElementById('socialModal')) {
+      const modal = document.getElementById('socialModal');
+      if (event.target === modal) {
         closeModal();
       }
-    };
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeModal();
-    });
-
-    /* ---- Init ---- */
-    document.getElementById('year').textContent = new Date().getFullYear();
-    setLanguage(currentLang);
-    createParticles();
+    }
   </script>
 </body>
 </html>
