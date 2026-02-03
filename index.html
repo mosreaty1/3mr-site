@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GhNewa | Content Creator</title>
+    <meta name="description" content="GhNewa - Content Creator, Streamer, and Gamer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-wrapper">
+        <div class="bg-gradient"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow bg-glow--warm"></div>
+        <div class="bg-glow bg-glow--cool"></div>
+        <div class="bg-particles" id="particles"></div>
+        <div class="bg-vignette"></div>
+    </div>
+
+    <!-- Top Right Controls -->
+    <div class="controls">
+        <button class="control-btn" id="langToggle" aria-label="Toggle Language">
+            <span class="lang-label lang-label--en">A</span>
+            <span class="lang-label lang-label--ar">ع</span>
+        </button>
+        <button class="control-btn" id="themeToggle" aria-label="Toggle Theme">
+            <i class="fas fa-sun"></i>
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="profile-section">
+            <div class="profile-image-wrapper">
+                <div class="profile-image">
+                    <!-- Replace src with your profile photo -->
+                    <img src="assets/profile.jpg" alt="GhNewa" onerror="this.style.display='none'">
+                    <div class="profile-placeholder">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+            </div>
+            <h1 class="username">GhNewa</h1>
+            <p class="subtitle">
+                <span class="typewriter" id="typewriter"></span>
+                <span class="cursor">|</span>
+            </p>
+        </div>
+
+        <nav class="social-links" aria-label="Social Media Links">
+            <a href="#" class="social-icon" title="Kick" target="_blank" rel="noopener noreferrer">
+                <svg class="kick-icon" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                    <path d="M5 3h3.5v6.5L13 3h4l-5.5 7.5L17 18h-4l-4.5-6.5V18H5V3z"/>
+                </svg>
+            </a>
+            <a href="#" class="social-icon" title="Facebook" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-facebook"></i>
+            </a>
+            <a href="#" class="social-icon" title="Instagram" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon" title="TikTok" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
+            <a href="#" class="social-icon" title="WhatsApp" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <a href="#" class="social-icon" title="YouTube" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+            <a href="#" class="social-icon" title="Discord" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-discord"></i>
+            </a>
+        </nav>
+    </main>
+
+    <!-- Character Illustration (right side) -->
+    <div class="character" id="character">
+        <!-- Replace src with your character illustration -->
+        <img src="assets/character.png" alt="GhNewa Character" onerror="this.parentElement.style.display='none'">
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 <a href="#" class="footer-link">GhNewa</a> &mdash; <span data-i18n="rights">All rights reserved</span></p>
+        <p><span data-i18n="developed">Developed by</span> <a href="#" class="footer-link">Omar Elkady</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
